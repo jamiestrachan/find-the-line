@@ -1,4 +1,4 @@
-find-the-line
+Find the Line
 =============
 
 A simple game about navigating crowds.
