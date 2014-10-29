@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Find the Line</title>
+        <meta name="description" content="A simple game about navigating crowds" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    		<meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        
+        <!--<link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'>-->
+        <link rel="stylesheet" href="css/findtheline.css" type="text/css" />
+    </head>
+    <body>
+    <div class="page">
+    	<h1>Find the Line</h1>
+      <canvas id="arena" height="400" width="600" style="position: relative;"></canvas>
+      <p id="debug"></p>
+      <p id="scoreboard"></p>
+      <ul id="plus"></ul>
+    </div>
+      
+      <script src="js/findtheline.js"></script>
+      <script>
+			FindTheLine.init("arena");
+			</script>
+    </body>
+</html>
