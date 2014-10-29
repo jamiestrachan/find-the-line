@@ -244,6 +244,7 @@ FindTheLine.display = (function () {
 			}
 			pluses[pluses.length - 1].innerHTML = plus;
 		} else if (plus === undefined) {
+			/* jshint ignore:start */
 			for (var i = 0; i < pluses.length; i++) {
 				if (pluses[i].className.indexOf("added") === -1) {
 					pluses[i].className = "added";
@@ -253,6 +254,7 @@ FindTheLine.display = (function () {
 					setTimeout(removePlus, FindTheLine.settings.bankTransitionTime);
 				}
 			}
+			/* jshint ignore:end */
 			updateDelay = FindTheLine.settings.bankTransitionTime * 0.5;
 		}
 		setTimeout(function() { document.getElementById("scoreboard").innerHTML = total; }, updateDelay);
