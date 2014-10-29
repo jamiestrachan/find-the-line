@@ -44,6 +44,10 @@ module.exports = function(grunt) {
         }
       }
     },
+    watch: {
+      files: ['src/js/*.js', 'src/scss/*.scss'],
+      tasks: ['default']
+    },
     clean: {
       main: ['assets', 'css', 'js']
     }
@@ -53,7 +57,7 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // Default task(s).
-  grunt.registerTask('debug', ['jshint', 'copy:debug', 'sass:debug']);
-  grunt.registerTask('default', ['jshint', 'copy:deploy', 'sass:deploy', 'uglify:deploy']);
+  grunt.registerTask('default', ['jshint', 'clean', 'copy:debug', 'sass:debug']);
+  grunt.registerTask('deploy', ['jshint', 'clean', 'copy:deploy', 'sass:deploy', 'uglify:deploy']);
 
 };
