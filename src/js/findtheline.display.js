@@ -20,7 +20,7 @@ FindTheLine.display = (function () {
 		
 		for (i; i < l; i++) {
 			ctx.beginPath();
-			ctx.arc(FindTheLine.global.enemies[i].getLocation().x, FindTheLine.global.enemies[i].getLocation().y, FindTheLine.settings.enemyRadius, 0, Math.PI*2, true);
+			ctx.arc(FindTheLine.global.enemies[i].getLocation().x, FindTheLine.global.enemies[i].getLocation().y, FindTheLine.global.enemies[i].getRadius(), 0, Math.PI*2, true);
 			ctx.closePath();
 			ctx.stroke();
 			ctx.fill();

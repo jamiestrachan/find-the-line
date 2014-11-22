@@ -9,6 +9,7 @@ var FindTheLine = {
 		playerStartX: 50,
 		playerStartY: 350,
 		enemyRadius: 4,
+		enemyRadiusLevelModifier: 0.3,
 		enemyDeltaX: -(1 / Math.sqrt(2)),
 		enemyDeltaY: 1 / Math.sqrt(2),
 		maxEnemies: 20,
