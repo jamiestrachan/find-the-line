@@ -6,8 +6,7 @@ module.exports = function(grunt) {
     copy: {
       debug: {
         files: [
-          {expand: true, cwd: 'src/assets/', src: ['**'], dest: 'assets/'},
-          {expand: true, cwd: 'src/js/', src: ['**'], dest: 'js/'}
+          {expand: true, cwd: 'src/assets/', src: ['**'], dest: 'assets/'}
         ]
       },
       deploy: {
@@ -37,10 +36,35 @@ module.exports = function(grunt) {
     jshint: {
       all: ['src/js/*.js']
     },
+    concat: {
+      js: {
+        files: {
+          'js/findtheline.js': [
+            'src/js/findtheline.settings.js',
+            'src/js/findtheline.helpers.js',
+            'src/js/findtheline.point.js',
+            'src/js/findtheline.player.js',
+            'src/js/findtheline.enemy.js',
+            'src/js/findtheline.display.js',
+            'src/js/findtheline.scorekeeper.js',
+            'src/js/findtheline.controller.js'
+          ]
+        }
+      }
+    },
     uglify: {
       deploy: {
         files: {
-          'js/findtheline.js': ['src/js/findtheline.js']
+          'js/findtheline.js': [
+            'src/js/findtheline.settings.js',
+            'src/js/findtheline.helpers.js',
+            'src/js/findtheline.point.js',
+            'src/js/findtheline.player.js',
+            'src/js/findtheline.enemy.js',
+            'src/js/findtheline.display.js',
+            'src/js/findtheline.scorekeeper.js',
+            'src/js/findtheline.controller.js'
+          ]
         }
       }
     },
@@ -57,7 +81,7 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'clean', 'copy:debug', 'sass:debug']);
+  grunt.registerTask('default', ['jshint', 'clean', 'copy:debug', 'sass:debug', 'concat:js']);
   grunt.registerTask('deploy', ['jshint', 'clean', 'copy:deploy', 'sass:deploy', 'uglify:deploy']);
 
 };
