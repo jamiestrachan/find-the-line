@@ -184,28 +184,34 @@ FindTheLine.controller = (function () {
 		FindTheLine.display.redraw();
 		
 		if (FindTheLine.debug.collisions && isGameOver()) {
-			FindTheLine.state.gameOver = true;
-			FindTheLine.scorekeeper.trackHighScore();
 			FindTheLine.display.announce("collision!");
-			clearInterval(loopInterval);
+			stop();			
 		} else {
 			updateLevel();
 		}
 	}
 
-	function init (canvasId) {
-		FindTheLine.global.canvas = document.getElementById(canvasId);
-		
-		FindTheLine.display.init();
-		
+	function stop () {
+		FindTheLine.state.gameOver = true;
+		FindTheLine.scorekeeper.trackHighScore();
+		clearInterval(loopInterval);
+	}
+
+	function reset () {
+		FindTheLine.global.player = {};
+		FindTheLine.global.enemies = [];
+		FindTheLine.global.path = [];
+
+		FindTheLine.scorekeeper.reset();
+	}
+
+	function start () {		
 		FindTheLine.state.masterGameSpeed = FindTheLine.settings.initGameSpeed;
 		FindTheLine.state.gameSpeed = FindTheLine.settings.initGameSpeed;
 		FindTheLine.state.maxEnemies = FindTheLine.settings.maxEnemies;
 		FindTheLine.state.playerAreaRadius = FindTheLine.settings.playerAreaRadius;
 
 		FindTheLine.global.player = new FindTheLine.Player();
-		
-		establishListeners();
 
 		addEnemy();
 		
@@ -213,10 +219,26 @@ FindTheLine.controller = (function () {
 
 		loopInterval = setInterval(gameLoop, FindTheLine.settings.drawInterval);
 	}
+
+	function init (canvasId) {
+		FindTheLine.global.canvas = document.getElementById(canvasId);
+		
+		FindTheLine.display.init();
+
+		establishListeners();
+		
+		start();
+	}
 	
 	return {
+		stop: stop,
+		reset: reset,
+		start: start,
 		init: init
 	};
 }());
 
 FindTheLine.init = FindTheLine.controller.init;
+FindTheLine.stop = FindTheLine.controller.stop;
+FindTheLine.reset = FindTheLine.controller.reset;
+FindTheLine.start = FindTheLine.controller.start;

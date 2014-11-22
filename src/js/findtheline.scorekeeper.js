@@ -16,6 +16,13 @@ FindTheLine.scorekeeper = (function () {
 		lineScore = 0;
 		multiplier = 1;
 	}
+
+	function reset () {
+		total = 0;
+		lineScore = 0;
+		multiplier = 1;
+		FindTheLine.display.displayScore(total, Math.floor(lineScore));
+	}
 	
 	function trackHighScore () {
 		//FindTheLine.display.debug(document.cookie);
@@ -24,6 +31,7 @@ FindTheLine.scorekeeper = (function () {
 	return {
 		incrementLineScore: incrementLineScore,
 		bank: bank,
+		reset: reset,
 		trackHighScore: trackHighScore
 	};
 }());
