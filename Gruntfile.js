@@ -68,8 +68,22 @@ module.exports = function(grunt) {
         }
       }
     },
+    connect: {
+      server: {
+        options: {
+          port: 9000,
+          hostname: 'localhost',
+          base: '.'
+        }
+      }
+    },
+    open: {
+      local: {
+        path: 'http://localhost:9000'
+      }
+    },
     watch: {
-      files: ['src/js/*.js', 'src/scss/*.scss'],
+      files: ['index.html', 'src/js/*.js', 'src/scss/*.scss'],
       tasks: ['default']
     },
     clean: {
@@ -82,6 +96,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'clean', 'copy:debug', 'sass:debug', 'concat:js']);
+  grunt.registerTask('develop', ['default', 'connect:server', 'open:local', 'watch']);
   grunt.registerTask('deploy', ['jshint', 'clean', 'copy:deploy', 'sass:deploy', 'uglify:deploy']);
 
 };
